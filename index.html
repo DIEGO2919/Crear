@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-     <div class="logo-container">
-            <img src="imagne.png" alt="imagen">
-        </a>
-    </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Precios</title>
@@ -13,22 +9,29 @@
 /* Estilos generales */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* Cabecera */
-header {
-    background-color: #f8f8f8; /* Color de fondo */
-    padding: 10px 20px; /* Espaciado interno */
-    text-align: center; /* Centra el logo */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centra el logo verticalmente */
+    background-color: #f0f0f0; /* Fondo de la página */
 }
 
 /* Contenedor del logo */
-.logo-container img {
-    max-width: 150px; /* Ancho máximo del logo */
-    height: auto; /* Altura automática para mantener la proporción */
+.logo-container {
+    padding: 20px; /* Espaciado interno */
+    background-color: #fff; /* Fondo del contenedor */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra exterior */
 }
+
+/* Estilos de la imagen */
+.logo-container img {
+    max-width: 200px; /* Ancho máximo del logo */
+    height: auto; /* Altura automática para mantener la proporción */
+    border-radius: 10px; /* Bordes redondeados para la imagen */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra en los bordes de la imagen */
+}
+
       
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -161,12 +164,9 @@ button:hover {
 </head>
 <body>
 
-<header>
-    <div class="logo-container">
-            <img src="imagne.png" alt="imagen">
-        </a>
+     <div class="logo-container">
+        <img src="imagen.png" alt="Game Park">
     </div>
-</header>
     
     <div class="container">
         <h1>Sistema de Precios</h1>
