@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Precios</title>
+  <style>
+ 
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+    background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #a18cd1);
+    background-size: 400% 400%;
+    animation: GradientBackground 15s ease infinite;
+}
+
+@keyframes GradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    max-width: 90%;
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+h2 {
+    color: #34495e;
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+.product, .total {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #444;
+}
+
+.total {
+    background-color: rgba(249, 249, 249, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.total h2 {
+    border-bottom: none;
+    margin-bottom: 10px;
+}
+
+#total-pagar, #vuelto {
+    font-weight: bold;
+    color: #27ae60;
+}
+
+#vuelto {
+    color: #e74c3c;
+}
+
+span {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+  
+  </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Precios</h1>
+        
+        <!-- Producto 1: Fichas -->
+        <div class="product">
+            <h2>Fichas</h2>
+            <label for="fichas-cantidad">Cantidad:</label>
+            <input type="number" id="fichas-cantidad" min="0" value="0">
+            <label for="fichas-precio">Precio unitario:</label>
+            <input type="number" id="fichas-precio" min="0" value="10">
+            <p>Total Fichas: <span id="fichas-total">0</span></p>
+        </div>
+
+        <!-- Producto 2: Manillas -->
+        <div class="product">
+            <h2>Manillas</h2>
+            <label for="manillas-cantidad">Cantidad:</label>
+            <input type="number" id="manillas-cantidad" min="0" value="0">
+            <label for="manillas-precio">Precio unitario:</label>
+            <input type="number" id="manillas-precio" min="0" value="5">
+            <p>Total Manillas: <span id="manillas-total">0</span></p>
+        </div>
+
+        <!-- Total y Vuelto -->
+        <div class="total">
+            <h2>Total General</h2>
+            <p>Total a Pagar: <span id="total-pagar">0</span></p>
+            <label for="dinero-entregado">Dinero Entregado:</label>
+            <input type="number" id="dinero-entregado" min="0" value="0">
+            <p>Vuelto: <span id="vuelto">0</span></p>
+        </div>
+    </div>
+
+    <script>// Función para calcular el total y el vuelto
+function calcularTotal() {
+    // Obtener valores de Fichas
+    const fichasCantidad = parseFloat(document.getElementById('fichas-cantidad').value) || 0;
+    const fichasPrecio = parseFloat(document.getElementById('fichas-precio').value) || 0;
+    const totalFichas = fichasCantidad * fichasPrecio;
+    document.getElementById('fichas-total').textContent = totalFichas.toFixed(2);
+
+    // Obtener valores de Manillas
+    const manillasCantidad = parseFloat(document.getElementById('manillas-cantidad').value) || 0;
+    const manillasPrecio = parseFloat(document.getElementById('manillas-precio').value) || 0;
+    const totalManillas = manillasCantidad * manillasPrecio;
+    document.getElementById('manillas-total').textContent = totalManillas.toFixed(2);
+
+    // Calcular total general
+    const totalPagar = totalFichas + totalManillas;
+    document.getElementById('total-pagar').textContent = totalPagar.toFixed(2);
+
+    // Calcular vuelto
+    const dineroEntregado = parseFloat(document.getElementById('dinero-entregado').value) || 0;
+    const vuelto = dineroEntregado - totalPagar;
+    document.getElementById('vuelto').textContent = vuelto.toFixed(2);
+}
+
+// Escuchar cambios en los inputs
+document.getElementById('fichas-cantidad').addEventListener('input', calcularTotal);
+document.getElementById('fichas-precio').addEventListener('input', calcularTotal);
+document.getElementById('manillas-cantidad').addEventListener('input', calcularTotal);
+document.getElementById('manillas-precio').addEventListener('input', calcularTotal);
+document.getElementById('dinero-entregado').addEventListener('input', calcularTotal);
+
+// Calcular al cargar la página
+window.onload = calcularTotal;</script>
+</body>
+</html>
